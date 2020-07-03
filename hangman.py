@@ -2,6 +2,17 @@ import words
 import random
 
 def hangman(word):
+    """
+    Plays a game of hangman.
+    Places each character of word string into list.
+    Board shows length of word with placeholders.
+    Player guesses letters to complete word before image of hanged body
+    and gallows is formed.
+    Previously guessed letters are displayed.
+    Correct guesses replace all placeholders in board with instance of
+    letter.
+    :param word: str.
+    """
     wrong = 0
     stages = ["            ",
               "____________",
@@ -18,6 +29,7 @@ def hangman(word):
     board = [blank] * len(word)
     win = False
     print("Welcome to Hangman!\n")
+    print("".join(board))
 
     while wrong < len(stages) -1:
         print("\n")
@@ -46,6 +58,12 @@ def hangman(word):
     if not win:
         print(f"You lose! It the word was \"{word}\"!")
 
-randnum = random.randint(0, 1000)
-randword = words.wordslist[randnum]
-hangman(randword)
+def get_randword ():
+    """
+    Returns random word from import words.py.
+    """
+    randnum = random.randint(0, 999)
+    randword = words.wordslist[randnum]
+    return randword
+
+hangman(get_randword())
